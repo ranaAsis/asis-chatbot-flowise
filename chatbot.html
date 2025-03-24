@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ASIS Assistant Chatbot</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9; /* Your chosen background color */
+      font-family: Arial, sans-serif;
+    }
+    .chatbot-container {
+      max-width: 400px;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .chatbot-header {
+      background-color: #000; /* Header color */
+      padding: 10px;
+      position: relative;
+    }
+    /* Logo positioned on the left */
+    .chatbot-header .logo {
+      height: 40px;
+    }
+    /* Message icon positioned on the top-right corner */
+    .chatbot-header .message-icon {
+      height: 30px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .chatbot-body {
+      padding: 10px;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="chatbot-container">
+    <div class="chatbot-header">
+      <img src="logo.png" alt="ASIS Logo" class="logo">
+      <img src="message-icon.png" alt="Message Icon" class="message-icon">
+    </div>
+    <div class="chatbot-body">
+      <!-- Flowise chatbot will render here -->
+      <div id="flowiseChat"></div>
+    </div>
+  </div>
+
+  <script type="module">
+      import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+      Chatbot.init({
+          chatflowid: "2b82d961-25c6-4f11-a86e-4f52edb1ec79",
+          apiHost: "https://flowise.asis-chatbot.com",
+          container: document.getElementById("flowiseChat")
+      })
+  </script>
+</body>
+</html>
