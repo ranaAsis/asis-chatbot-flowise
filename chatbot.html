@@ -1,64 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>ASIS Assistant Chatbot</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f9; /* Your chosen background color */
-      font-family: Arial, sans-serif;
-    }
-    .chatbot-container {
-      max-width: 400px;
-      margin: 20px auto;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .chatbot-header {
-      background-color: #000; /* Header color */
-      padding: 10px;
-      position: relative;
-    }
-    /* Logo positioned on the left */
-    .chatbot-header .logo {
-      height: 40px;
-    }
-    /* Message icon positioned on the top-right corner */
-    .chatbot-header .message-icon {
-      height: 30px;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-    .chatbot-body {
-      padding: 10px;
-      background-color: #fff;
-    }
-  </style>
-</head>
-<body>
-  <div class="chatbot-container">
-    <div class="chatbot-header">
-      <img src="logo.png" alt="ASIS Logo" class="logo">
-      <img src="message-icon.png" alt="Message Icon" class="message-icon">
-    </div>
-    <div class="chatbot-body">
-      <!-- Flowise chatbot will render here -->
-      <div id="flowiseChat"></div>
-    </div>
-  </div>
+<script type="module">
+  // Import the Chatbot module from the CDN.
+  import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
 
-  <script type="module">
-      import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-      Chatbot.init({
-          chatflowid: "2b82d961-25c6-4f11-a86e-4f52edb1ec79",
-          apiHost: "https://flowise.asis-chatbot.com",
-          container: document.getElementById("flowiseChat")
-      })
-  </script>
-</body>
-</html>
+  // Initialize the Chatbot with the configuration options.
+  Chatbot.init({
+      // Unique identifier for your chatflow. This should match your chatflow setup.
+      chatflowid: "2b82d961-25c6-4f11-a86e-4f52edb1ec79",
+
+      // The API host where your chatbot backend is located.
+      apiHost: "https://flowise.asis-chatbot.com",
+
+      // Optional additional configuration for your chatflow.
+      chatflowConfig: {
+          /* Chatflow Config */
+          // Customize chatflow specific settings here if needed.
+      },
+
+      // Optional configuration for observers.
+      observersConfig: {
+          /* Observers Config */
+          // Customize observer behaviors here if required.
+      },
+
+      // Theme configuration to customize the look and feel of the chatbot.
+      theme: {
+          // Configuration for the floating chat button.
+          button: {
+              backgroundColor: 'transparent',  // Button background color.
+              right: 20,                   // Distance from the right edge of the screen.
+              bottom: 20,                  // Distance from the bottom edge of the screen.
+              size: 48,                    // Size of the button in pixels.
+              dragAndDrop: true,           // Enable drag and drop functionality.
+              customIconSrc: './images/logo.png', // URL for a custom icon image.
+              autoWindowOpen: {
+                  autoOpen: false,         // Automatically open the chat window when triggered.
+                  openDelay: 2,           // Delay (in seconds) before auto-opening the chat window.
+                  autoOpenOnMobile: false // Disable auto-open on mobile devices.
+              }
+          },
+
+          // Configuration for the tooltip that appears near the chat button.
+          tooltip: {
+              showTooltip: true,               // Enable or disable the tooltip.
+              tooltipMessage: 'Hi There!',   // The message shown in the tooltip.
+              tooltipBackgroundColor: '#bb141a', // Background color of the tooltip.
+              tooltipTextColor: 'white',       // Text color for the tooltip message.
+              tooltipFontSize: 16              // Font size for the tooltip text.
+          },
+
+          // Configuration for the disclaimer popup shown to users.
+    /*       disclaimer: {
+              title: 'Disclaimer', // Title of the disclaimer popup.
+              message: "By using this chatbot, you agree to the <a target=\"_blank\" href=\"https://flowiseai.com/terms\">Terms & Condition</a>", // Disclaimer message with a link to terms.
+              textColor: 'black',  // Text color for the disclaimer.
+              buttonColor: '#3b82f6', // Background color for the disclaimer button.
+              buttonText: 'Start Chatting', // Text on the disclaimer button.
+              buttonTextColor: 'white', // Color of the disclaimer button text.
+              blurredBackgroundColor: 'rgba(0, 0, 0, 0.4)', // Background overlay color when the disclaimer is shown.
+              backgroundColor: 'white' // Background color of the disclaimer content area.
+          }, */
+
+          // Place to add any additional custom CSS styles.
+          customCSS: ``,
+
+          // Configuration for the chat window itself.
+          chatWindow: {
+              showTitle: true,         // Display the title of the chat window.
+              showAgentMessages: true, // Display messages sent by the chatbot agent.
+              title: 'ASIS',    // Title text for the chat window.
+              titleAvatarSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg', // Avatar image for the chat window title.
+              welcomeMessage: 'Hello! Welcome to ASIS Boats', // Custom welcome message for users.
+              errorMessage: 'There was an error. Please retry or contact us at info@asisboats.com', // Custom error message displayed when an error occurs.
+              backgroundColor: '#ffffff', // Background color of the chat window.
+              backgroundImage: 'enter image path or link', // Optional background image for the chat window.
+              height: 700,             // Height of the chat window in pixels.
+              width: 400,              // Width of the chat window in pixels.
+              fontSize: 16,            // Base font size for the chat window content.
+              starterPrompts: [        // List of starter prompt messages to help initiate conversation.
+                  "What do you sell?"
+              ],
+              starterPromptFontSize: 15, // Font size for the starter prompts.
+              clearChatOnReload: false,  // Determine whether the chat history should clear on page reload.
+              sourceDocsTitle: 'Sources:', // Title for any source documents displayed.
+              renderHTML: true,       // Allow HTML content to be rendered in chat messages.
+              
+              // Appearance configuration for messages sent by the chatbot agent.
+              botMessage: {
+                  backgroundColor: '#f7f8ff', // Background color for bot messages.
+                  textColor: '#303235',       // Text color for bot messages.
+                  showAvatar: true,           // Display the bot's avatar with messages.
+                  avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png' // URL for the bot's avatar image.
+              },
+              
+              // Appearance configuration for messages sent by the user.
+              userMessage: {
+                  backgroundColor: '#3B81F6', // Background color for user messages.
+                  textColor: '#ffffff',       // Text color for user messages.
+                  showAvatar: true,           // Display the user's avatar with messages.
+                  avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png' // URL for the user's avatar image.
+              },
+              
+              // Configuration for the text input area where users type their messages.
+              textInput: {
+                  placeholder: 'Type your question', // Placeholder text in the input field.
+                  backgroundColor: '#ffffff', // Background color of the input field.
+                  textColor: '#303235',       // Text color for user input.
+                  sendButtonColor: '#3B81F6', // Background color for the send button.
+                  maxChars: 50,               // Maximum number of characters allowed per message.
+                  maxCharsWarningMessage: 'You exceeded the characters limit. Please input less than 50 characters.', // Warning message for exceeding character limit.
+                  autoFocus: true,            // Automatically focus the text input when the chat window is opened.
+                  sendMessageSound: true,     // Play a sound when a message is sent.
+                  sendSoundLocation: 'send_message.mp3', // File location for the send message sound.
+                  receiveMessageSound: true,  // Play a sound when a message is received.
+                  receiveSoundLocation: 'receive_message.mp3' // File location for the receive message sound.
+              },
+              
+              // Configuration for feedback elements within the chat window.
+              feedback: {
+                  color: '#303235' // Color of feedback text or icons.
+              },
+              
+              // Toggle to display the date and time alongside messages.
+              dateTimeToggle: {
+                  date: true, // Show date with messages.
+                  time: true  // Show time with messages.
+              },
+              
+              // Configuration for the footer area at the bottom of the chat window.
+              footer: {
+                  textColor: '#303235', // Text color for the footer.
+                  text: 'Powered by',   // Text label preceding the company name.
+                  company: 'Flowise',   // Company name displayed in the footer.
+                  companyLink: 'https://flowiseai.com' // URL for the company link.
+              }
+          }
+      }
+  })
+</script>
