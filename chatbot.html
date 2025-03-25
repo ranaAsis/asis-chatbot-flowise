@@ -61,14 +61,28 @@
           }, */
 
           // Place to add any additional custom CSS styles.
-          customCSS: ``,
+          customCSS: `
+              /* Adjust the title avatar image to reduce its height */
+              .flowise-chatwindow-title-avatar img {
+                  object-fit: contain !important;
+                  height: 40px !important; /* Reduced height */
+                  width: auto !important;
+              }
+
+              /* Alternatively, targeting the image by its URL for extra specificity */
+              img[src="https://raw.githubusercontent.com/ranaAsis/asis-chatbot-flowise/main/images/logo.png"] {
+                  object-fit: contain !important;
+                  height: 40px !important; /* Reduced height */
+                  width: auto !important;
+              }
+          `,
 
           // Configuration for the chat window itself.
           chatWindow: {
               showTitle: true,         // Display the title of the chat window.
               showAgentMessages: true, // Display messages sent by the chatbot agent.
               title: 'ASIS',    // Title text for the chat window.
-              titleAvatarSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg', // Avatar image for the chat window title.
+              titleAvatarSrc: 'https://raw.githubusercontent.com/ranaAsis/asis-chatbot-flowise/main/images/logo.png', // Avatar image for the chat window title.
               welcomeMessage: 'Hello! Welcome to ASIS Boats', // Custom welcome message for users.
               errorMessage: 'There was an error. Please retry or contact us at info@asisboats.com', // Custom error message displayed when an error occurs.
               backgroundColor: '#ffffff', // Background color of the chat window.
@@ -129,9 +143,9 @@
               // Configuration for the footer area at the bottom of the chat window.
               footer: {
                   textColor: '#303235', // Text color for the footer.
-                  text: 'Powered by',   // Text label preceding the company name.
-                  company: 'Flowise',   // Company name displayed in the footer.
-                  companyLink: 'https://flowiseai.com' // URL for the company link.
+                  text: '',   // Text label preceding the company name.
+                  company: 'ASIS Boats',   // Company name displayed in the footer.
+                  companyLink: 'https://asisboats.com/' // URL for the company link.
               }
           }
       }
