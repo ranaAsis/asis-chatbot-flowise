@@ -81,18 +81,18 @@
               showAgentMessages: true, // Display messages sent by the chatbot agent.
               title: 'ASIS',    // Title text for the chat window.
               titleAvatarSrc: 'https://raw.githubusercontent.com/ranaAsis/asis-chatbot-flowise/main/images/logo.png', // Avatar image for the chat window title.
-              welcomeMessage: 'Hello! Welcome to ASIS Boats', // Custom welcome message for users.
+              welcomeMessage: '<b>Hello, welcome to ASIS Boats!</b>  <br>I\'m Ace, your virtual assistant. <br>How can I assist you today?', // Custom welcome message for users.
               errorMessage: 'There was an error. Please retry or contact us at info@asisboats.com', // Custom error message displayed when an error occurs.
               backgroundColor: '#ffffff', // Background color of the chat window.
-              backgroundImage: 'enter image path or link', // Optional background image for the chat window.
+              backgroundImage: './images/grey_background.jpg', // Optional background image for the chat window.
               height: 700,             // Height of the chat window in pixels.
               width: 400,              // Width of the chat window in pixels.
               fontSize: 16,            // Base font size for the chat window content.
               starterPrompts: [        // List of starter prompt messages to help initiate conversation.
-                  "What makes ASIS Boats different?", ""
+                  "Hello Ace, What makes ASIS Boats different?", ""
               ],
               starterPromptFontSize: 15, // Font size for the starter prompts.
-              clearChatOnReload: true,  // Determine whether the chat history should clear on page reload.
+              clearChatOnReload: false,  // Determine whether the chat history should clear on page reload.
               sourceDocsTitle: 'Sources:', // Title for any source documents displayed.
               renderHTML: true,       // Allow HTML content to be rendered in chat messages.
               
